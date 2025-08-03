@@ -2,18 +2,30 @@
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using DataAccess.Concrete.EntityFramework;
+using System;
 
-Console.WriteLine("Hello, World!");
-
-
-
-
-
-ProductManager productManager= new ProductManager(new EfProductDal());
-
-foreach (var product in productManager.GetAll())
-
+public class Program
 {
-    Console.WriteLine(product.ProductId);
-    
+
+    private static void Main(string[] args)
+    {
+        var context = new NorthwindContext();
+
+ 
+
+
+
+        ProductManager productManager = new ProductManager(new EfProductDal());
+
+        foreach (var product in productManager.GetAll())
+        {
+            Console.WriteLine(product.ProductName);
+        }
+
+        Console.WriteLine("Can not get");
+
+
+    }
+  
 }
