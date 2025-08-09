@@ -12,19 +12,6 @@ public class Program
     {
         var context = new NorthwindContext();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
        ProductTest();
 
         //CategoryTest();
