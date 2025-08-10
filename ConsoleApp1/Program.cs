@@ -1,8 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using DataAccess.Concrete.EntityFramework;
+using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
 public class Program
@@ -32,9 +33,18 @@ public class Program
     {
         ProductManager productManager = new ProductManager(new EfProductDal());
 
-        foreach (var product in productManager.GetProductDetails())
+        var result = productManager.GetProductDetails();
+
+        if (result.Success == true)
         {
-            Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+            foreach (var product in result.Data)
+            {
+                Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+            }
+        }
+        else
+        {
+            Console.WriteLine(result.Message);
         }
     }
 }
